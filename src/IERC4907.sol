@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: CC0-1.0
-
 pragma solidity ^0.8.0;
+
+import {IERC165} from "openzeppelin-contracts/contracts/utils/introspection/IERC165.sol";
 
 /// @author Tim Daubenschütz and the authors of EIP-4907
 ///  (https://github.com/rugpullindex/ERC4907/blob/main/src/ERC4907.sol)
-interface IERC4907 {
+interface IERC4907 is IERC165 {
   // Logged when the user of a token assigns a new user or updates expires
   /// @notice Emitted when the `user` of an NFT or the `expires` of the `user`
   ///  is changed. The zero address for user indicates that there is no user
@@ -14,6 +15,9 @@ interface IERC4907 {
     address indexed user,
     uint64 expires
   );
+
+  /// @dev See {IERC165-supportsInterface}.
+  function supportsInterface(bytes4 interfaceId) external view returns (bool);
 
   /// @notice set the user and expires of a NFT
   /// @dev The zero address indicates there is no user

@@ -49,7 +49,7 @@ contract ERC4907 is ERC721, IERC4907 {
 
   function supportsInterface(
     bytes4 interfaceId
-  ) public view virtual override returns (bool) {
+  ) public view virtual override(ERC721, IERC4907) returns (bool) {
     return interfaceId == type(IERC4907).interfaceId ||
       super.supportsInterface(interfaceId);
   }
